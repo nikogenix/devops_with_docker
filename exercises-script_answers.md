@@ -131,3 +131,44 @@ docker run web-server
 [GIN-debug] GET    /*path                    --> server.Start.func1 (3 handlers)
 [GIN-debug] Listening and serving HTTP on :8080
 ```
+
+### exercise 1.9
+
+```
+docker run -v "$(pwd)/text.log:/usr/src/app/text.log" devopsdockeruh/simple-web-service
+```
+
+### exercise 1.10
+
+```
+docker run -p 127.0.0.1:8080:8080 web-server
+
+[GIN] 2023/06/19 - 23:42:38 | 200 |        42.4µs | GET      "/"
+[GIN] 2023/06/19 - 23:42:39 | 200 |        35.9µs | GET      "/favicon.ico"
+
+{
+message: "You connected to the following path: /",
+path: "/"
+}
+```
+
+### exercise 1.11
+
+```
+docker build -t java-app .
+docker run -p 127.0.0.1:8080:8080 java-app
+```
+
+### exercise 1.12
+
+```
+docker build -t frontend .
+docker run -p 127.0.0.1:5000:5000 frontend
+```
+
+### exercise 1.13
+
+```
+docker build -t backend .
+docker run -p 127.0.0.1:8080:8080 backend
+```
