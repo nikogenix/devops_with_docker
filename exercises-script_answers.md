@@ -179,3 +179,11 @@ docker run -p 127.0.0.1:8080:8080 backend
 docker run -p 127.0.0.1:5000:5000 frontend
 docker run -p 127.0.0.1:8080:8080 backend
 ```
+
+### exercise 2.5
+
+```
+net stop winnat
+docker compose up --scale compute=2
+net start winnat
+```
