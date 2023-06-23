@@ -187,3 +187,7 @@ net stop winnat
 docker compose up --scale compute=2
 net start winnat
 ```
+
+### exercise 3.1
+
+> https://github.com/nikogenix/devops_with_docker-cicd
