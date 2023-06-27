@@ -1,15 +1,17 @@
-FROM golang:1.16
+FROM golang:alpine AS builder
 
-WORKDIR /
-
+RUN apk update && apk add --no-cache git
+WORKDIR $GOPATH/src/mypackage/myapp/
 COPY . .
 
-ENV REQUEST_ORIGIN=http://localhost
+RUN go get -d -v
 
-RUN go build
+RUN GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o /go/bin/server
 
-RUN useradd -m appuser
+FROM scratch
 
-USER appuser
+COPY --from=builder /go/bin/server /go/bin/server
 
-CMD ./server
+ENTRYPOINT ["/go/bin/server"]
+
+# source: https://chemidy.medium.com/create-the-smallest-and-secured-golang-docker-image-based-on-scratch-4752223b7324

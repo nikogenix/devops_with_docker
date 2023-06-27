@@ -191,3 +191,29 @@ net start winnat
 ### exercise 3.1
 
 > https://github.com/nikogenix/devops_with_docker-cicd
+
+### exercise 3.6
+
+> initial image size:
+
+    frontend | 1.26 GB
+    backend | 1.06 GB
+
+> after combining RUN commands
+
+    frontend | 939 MB
+    backend | 1.06 GB
+
+### exercise 3.7
+
+> after switching to alpine:latest
+
+    frontend | 99 MB
+    backend | 564 MB
+
+### exercise 3.8 & 3.9
+
+> after switching to multi-stage
+
+    frontend | 78 MB
+    backend | 12 MB

@@ -1,19 +1,21 @@
-FROM node:16
+FROM node:16 as build-stage
 
-WORKDIR /
+WORKDIR /usr/app
 
 COPY . .
 
-RUN npm install
+RUN npm install && npm run build 
 
-ENV REACT_APP_BACKEND_URL=http://localhost
+FROM alpine:latest  
 
-RUN npm run build
+WORKDIR /root/
 
-RUN npm install -g serve
+RUN apk add --update nodejs npm && npm install -g serve
 
-RUN useradd -m appuser
+COPY --from=build-stage ./usr/app/build ./build
 
-USER appuser
+RUN adduser -D userapp
+RUN chown userapp .
+USER userapp
 
 CMD serve -s -l 5000 build
